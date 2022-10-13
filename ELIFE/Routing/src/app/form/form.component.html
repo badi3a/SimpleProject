@@ -1,0 +1,17 @@
+<form #f="ngForm">
+  <div class="form-group">
+    <label>firstName</label>
+    <input type="text" name="fname" [(ngModel)]="user.firstName"
+    class="form-control" pattern="[a-zA-Z]{3,20}$" required #fn="ngModel">
+    <div *ngIf="fn.invalid && fn.touched">
+      <p *ngIf="fn.hasError('required')">this field is required</p>
+      <p *ngIf="fn.hasError('pattern')">pattern error</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>lastName</label>
+    <input type="text" name="fname"  [(ngModel)]="user.lastName"  class="form-control">
+  </div>
+  <br>
+  <button class="btn btn-warning" [disabled]="f.invalid" (click)="save()">save</button>
+</form>
